@@ -29,8 +29,7 @@ class AuthController extends BasePublicController
         $error = $this->auth->login($credentials, $remember);
         if (!$error) {
             flash()->success(trans('user::messages.successfully logged in'));
-
-            return redirect()->intended('/');
+            return redirect()->intended(route(config('asgard.user.users.redirect_route_after_login')));
         }
 
         flash()->error($error);
